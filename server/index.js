@@ -25,12 +25,12 @@ mongoose
 app.use("/api/auth", authRoutes);   // authentication routes//
 app.use("/api/messages", messageRoutes);  // messaging routes//
 
-const server = app.listen(process.env.PORT, () =>
+const server = app.listen(process.env.PORT || 5000, () =>
   console.log(`Server started on ${process.env.PORT}`)
 );
 const io = socket(server, {
   cors: {                             // cross origin resource sharing//
-    origin: "http://localhost:3000",
+    origin: process.env.ORIGIN,
     credentials: true,
   },
 });
